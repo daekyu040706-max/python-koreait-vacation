@@ -23,17 +23,18 @@ a, b = b, a
 print(f"a={a}, b={b}")
 
 coord = (3, -3)
+x, y = coord
 # 조건문을 사용하여 coord가 몇사분면에 있는지 출력
 # 원점, x, y축 위에 있는 경우 제외
-if x > 0 and y > 0
+if x > 0 and y > 0:
     print("1사분면에 있습니다")
-if x < 0 and y > 0
+if x < 0 and y > 0:
     print("2사분면에 있습니다")
-if x < 0 and y < 0
+if x < 0 and y < 0:
     print("3사분면에 있습니다")
-if x > 0 and y < 0
+if x > 0 and y < 0:
     print("4사분면에 있습니다")
-----------------------------------
+
 # 중첩 조건문
 if x > 0:
     if y > 0:
