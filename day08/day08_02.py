@@ -65,8 +65,8 @@ def print_add_result(x, y):
     sum_num = x + y
     if sum_num % 2 == 0:
         return "짝수"
-    else:
-        return "홀수"
+
+    return "홀수"
 
 # 리턴은 호출결과 -> 데이터를 리턴했다면 데이터가 됨
 result = print_add_result(10, 20)
