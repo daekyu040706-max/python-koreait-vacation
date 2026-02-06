@@ -18,8 +18,6 @@ lambda_add = lambda x, y: x + y
 def square_add(x, y):
     return x ** 2 + y ** 2
 
-square_add = lambda x, y: x ** 2 + y ** 2
-
 # 고차함수 호출
 result1 = calc(10, 20, plus)
 result3 = calc(10, 20, lambda x, y: x + y)
@@ -33,4 +31,73 @@ print(result4)
 # 1. filter(함수, 리스트)
 # 리스트에서 콜백함수 결과가 True인 요소만 남겨줌
 nums = [1, 2, 3, 4, 5, 6]
-filter(lambda n: n % 2 == 0,nums)
+res1 = filter(lambda n: n % 2 == 0, nums)
+# 필터 결과는 리스트로 형변환
+res1 = list(res1)
+print(res1)
+
+names = ["김철수", "박철수", "김길동", "최길동"]
+# 김씨만 남겨달라
+res2 = filter(lambda name: name.startswith("김"), names)
+res2 = list(res2)
+print(res2)
+
+
+# 2. map(요소 조작 함수, 리스트)
+nums = [1, 2, 3, 4, 5, 6]
+res3 = list(map(lambda n: n ** 2, nums))
+str_nums = ["1","2","3","4"]
+res4 = list(map(int, str_nums))
+print(res4[0] + 1) # 2
+
+# 도전) 모든 이름뒤에 고객님 붙히기
+# ex) 김철수 -> 김철수고객님
+names = ["김철수", "박철수", "김길동", "최길동"]
+res5 = map(lambda name: name + "고객님", names)
+res5 = list(res5)
+print(res5)
+
+# 3. sorted - 정렬
+nums = [30, 55, 1, 4, 11]
+# 숫자 -> 오름차순으로 정렬 1 4 11 ... 55
+sorted_nums = sorted(nums)
+print(sorted_nums)
+
+words = ["banana", "apple", "applepie"]
+# 문자 -> 사전순으로 정렬된 결과
+sorted_words = sorted(words)
+print(sorted_words)
+
+# 기본동작 : 작은게 앞으로
+# 각 숫자들에 -1 곱한걸 기준으로 정렬해라
+desc_nums = sorted(nums, key=lambda n: -1 * n)
+
+# 글자길이가 긴 것이 먼저오게
+# 기본동작: 작은게 앞으로
+words = ["banana", "apple", "applepie"]
+res6 = sorted(words, key=lambda w: -len(w))
+
+# 4. max, min
+nums = [30, 55, 1, 5]
+max(nums) # 55 -> 가장 큰 숫자
+min(nums) # 1 -> 가장 작은 숫자
+words = ["banana", "apple", "applepie"]
+# 가장 긴 이름
+longest_word = max(words, key=lambda w: len(w))
+
+# 도전) max를 사용하여 점수가 가장 높은 사람의 이름을 출력
+scores = [
+    {"name": "홍길동", "score": 90, "age": 20},
+    {"name": "김영희", "score": 90, "age": 22},
+    {"name": "최철수", "score": 40, "age": 18},
+]
+biggest_score = max(scores, key=lambda s: s["score"])
+print(biggest_score)
+
+highest_score = max(scores, key=lambda s: s["score"])
+print(highest_score["name"])
+
+# 동률 처리 - max, min, sorted 모두 동일
+# 높은 점수인데 동률이면 나이가 많은 사람이름  # 리턴에 튜플로 적용될 값의 우선순위를 지정가능
+highest_score_age = max(scores, key=lambda s: (s["score"], s["age"]))
+print(highest_score_age["name"])
